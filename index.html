@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -33,7 +33,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#libros">Libros</a></li>
                         <li class="nav-item"><a class="nav-link" href="#autores">Autores</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contacto">Contato</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
             </div>
@@ -68,32 +68,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            include "db/conexion.php"; // Asegúrate de que este archivo establece la conexión usando PDO
-                            include "libros/add_delete.php";
-
-                            // Preparar la consulta para obtener los libros
-                            $sql = "SELECT * FROM titulos";
-                            $stmt = $conexion->prepare($sql);
-                            $stmt->execute();
-                            $result = $stmt->fetchAll(PDO::FETCH_OBJ); // Obtener todos los resultados como objetos
-
-                            foreach ($result as $datos) { ?>
-                                <tr>
-                                    <td><?= htmlspecialchars($datos->titulo) ?></td>
-                                    <td><?= htmlspecialchars($datos->tipo) ?></td>
-                                    <td><?= htmlspecialchars($datos->precio) ?></td>
-                                    <td>
-                                        <a href="index.php?titulo=<?= urlencode($datos->titulo) ?>"><i class="fa-solid fa-trash"></i></a>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                            <tr>
+                                <td>Cien Años de Soledad</td>
+                                <td>Realismo Mágico</td>
+                                <td>$15.00</td>
+                                <td>
+                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1984</td>
+                                <td>Ciencia Ficción</td>
+                                <td>$12.50</td>
+                                <td>
+                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>El Principito</td>
+                                <td>Infantil</td>
+                                <td>$10.00</td>
+                                <td>
+                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="text-center">
-                <a href="libros/agregar.php" class="btn btn-warning">Agregar</a>
+                <a href="libros/agregar.html" class="btn btn-warning">Agregar</a>
             </div>
         </section>
 
@@ -112,39 +116,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            include "db/conexion.php"; // Asegúrate de que este archivo establece la conexión usando PDO
-                            include "autores/add_delete.php";
-
-                            // Preparar la consulta para obtener los autores
-                            $sql = "SELECT * FROM autores";
-                            $stmt = $conexion->prepare($sql);
-                            $stmt->execute();
-                            $result = $stmt->fetchAll(PDO::FETCH_OBJ); // Obtener todos los resultados como objetos
-
-                            foreach ($result as $datos1) { ?>
-                                <tr>
-                                    <td><?= htmlspecialchars($datos1->nombre) ?></td>
-                                    <td><?= htmlspecialchars($datos1->apellido) ?></td>
-                                    <td><?= htmlspecialchars($datos1->pais) ?></td>
-                                    <td>
-                                        <a href="index.php?nombre=<?= urlencode($datos1->nombre) ?>"><i class="fa-solid fa-trash"></i></a>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                            <tr>
+                                <td>Gabriel</td>
+                                <td>García Márquez</td>
+                                <td>Colombia</td>
+                                <td>
+                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>George</td>
+                                <td>Orwell</td>
+                                <td>Reino Unido</td>
+                                <td>
+                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Antoine</td>
+                                <td>de Saint-Exupéry</td>
+                                <td>Francia</td>
+                                <td>
+                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="text-center">
-                <a href="autores/agregar.php" class="btn btn-warning">Agregar</a>
+                <a href="autores/agregar.html" class="btn btn-warning">Agregar</a>
             </div>
         </section>
 
         <!-- Contacto-->
         <section class="page-section bg-light" id="contacto">
             <div class="container">
-                <form class="text-center" method="POST">
+                <form class="text-center" method="POST" action="#">
                     <h2 class="section-heading text-uppercase">Contacto</h2>
 
                     <div class="mb-3">
@@ -165,13 +173,6 @@
 
                     <div class="mb-3">
                         <input type="text" class="form-control" name="comentario" placeholder="Comentario" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <?php
-                        include "db/conexion.php"; // Asegúrate de que este archivo establece la conexión usando PDO
-                        include "formulario/contacto.php";
-                        ?>
                     </div>
 
                     <button type="submit" class="btn btn-primary" name="btnenviar" value="ok">Enviar</button>
